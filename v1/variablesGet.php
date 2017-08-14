@@ -7,7 +7,18 @@
  */
 
 
-function Mostrar($peticion) {
-    $resultado = $_GET["$peticion"];
-    echo $resultado;
+function mostrar($peticion) {
+    if (isset($_GET["$peticion"])) {
+        $resultado = $_GET["$peticion"];
+        echo $resultado;
+        echo "<br>";
+    }
+}
+
+function mostrarConNombre($peticion) {
+    if (isset($_GET["$peticion"])) {
+        $resultado = $_GET["$peticion"];
+        echo "$" . $peticion . ": " . $resultado;
+        echo "<br>";
+    }
 }

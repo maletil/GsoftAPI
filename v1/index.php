@@ -9,5 +9,5 @@
 require ('variablesGet.php');
 
 
-Mostrar('ip');
-Mostrar('as');
+mostrar('ip');
+mostrarConNombre('as');
