@@ -30,7 +30,7 @@ function mysqlDBDisconnect ($conn) {
     if($close){
         // echo 'Disconnected.';
     }else {
-        echo 'Error at disconnecting.';
+        echo 'Error while disconnecting.';
     }
 }
 
