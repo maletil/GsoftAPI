@@ -6,19 +6,37 @@
  * Time: 20:12
  */
 
+$petition = [];
 
-function mostrar($peticion) {
-    if (isset($_GET["$peticion"])) {
-        $resultado = $_GET["$peticion"];
-        echo $resultado;
+function request ($petition) {
+    switch ((isset($_GET["format"]) ? $_GET["format"] : '')) {
+        case 'json':
+            echo "json_output";
+            break;
+        case 'raw':
+            output_raw($petition);
+            break;
+        case 'rawDefined':
+            output_rawDefined($petition);
+            break;
+        default:
+            echo "json";
+            break;
+    }
+}
+
+function output_raw($petition) {
+    if (isset($_GET["$petition"])) {
+        $result = $_GET["$petition"];
+        echo $result;
         echo "<br>";
     }
 }
 
-function mostrarConNombre($peticion) {
-    if (isset($_GET["$peticion"])) {
-        $resultado = $_GET["$peticion"];
-        echo "$" . $peticion . ": " . $resultado;
+function output_rawDefined($petition) {
+    if (isset($_GET["$petition"])) {
+        $result = $_GET["$petition"];
+        echo $petition . ": " . $result;
         echo "<br>";
     }
 }
