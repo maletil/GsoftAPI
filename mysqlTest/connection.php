@@ -9,6 +9,7 @@
 function mysqlDBConnect () {
  //   $hashfinal = "$hash1 + $hash2";
     // if ($hashfinal = md5('sahe')) {
+
     $username = "root";
     $password = "";
     $servername = "127.0.0.1";

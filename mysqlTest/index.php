@@ -9,15 +9,23 @@
 require ('connection.php');
 require ('functions.php');
 
+
 // $conn = mysqlDBConnect('EEF97937877D','B2D6B919CAE265589296');
 
-$arraydesalida = getArraySQL($_GET["sql"]);
 
-
-function getUser() {
-
+if (isset($_GET["sql"])) {
+    apiRequest($_GET["sql"]);
 }
 
+function apiRequest ($sql){
+        $arraydesalida = getArraySQL($sql);
+
+        echo json_encode($arraydesalida);
+
+} // else {echo ("{\"error\":\"Empty query.\"}");}
 
 
-echo json_encode($arraydesalida);
+/*function apiRequest ($sql, $auth) {
+if (isset($_GET["sql"])) {
+    $arraydesalida = getArraySQL($_GET["sql"]);
+*/

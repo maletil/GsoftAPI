@@ -5,7 +5,7 @@
 ```JSON
 {
     "name": "Golden Soft API.",
-    "description": "API usada para gestionar bases de datos de empresa de Facturación .NET",
+    "description": "API que permite gestión de bases de datos de empresa de Facturación .NET",
     "repository": "https://github.com/maletil/GsoftAPI"
 }
 ```

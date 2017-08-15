@@ -7,4 +7,5 @@
  */
 $Select_articulos = "Contador, Codigo, Nombre, Descripcion, Familia, `Ultima Modificacion`";
 
-SELECT Contador, Codigo, Nombre, Descripcion, Familia, `Ultima Modificacion` FROM `articulos` WHERE Nombre like '%1/4%' AND Nombre LIKE '%machon%'
+// SELECT Contador, Codigo, Nombre, Descripcion, Familia, `Ultima Modificacion` FROM `articulos` WHERE Nombre like '%1/4%' AND Nombre LIKE '%machon%'
+
