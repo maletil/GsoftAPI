@@ -6,9 +6,11 @@
  * Time: 9:55
  */
 
-if (isset($_GET["auth"]) ) {
+if (isset($_GET["auth"]) && isset($_GET["name"])) {
 
-    $json_string = file_get_contents('http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=12&name=llave&getPrice=false');
+    $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?name=". $_GET["name"] . "&auth=1&getPrice=true";
+
+    $json_string = file_get_contents($origin);
     $json_output = json_decode($json_string);
 
 //var_dump($data);
@@ -18,6 +20,8 @@ if (isset($_GET["auth"]) ) {
                 <td><strong>Código</strong></td>
                 <td><strong>Nombre</strong></td>
                 <td><strong>Familia</strong></td>
+                <td><strong>P. Medio</strong></td>
+                <td><strong>P. Últ.</strong></td>
                 <td><strong>Últ. mod.</strong></td>
             </tr>";
 
@@ -28,6 +32,8 @@ if (isset($_GET["auth"]) ) {
             <td><strong><?php echo $object->{'Codigo'} ?></strong></td>
             <td><strong><?php echo $object->{'Descripcion'} ?></strong></td>
             <td><strong><?php echo $object->{'Familia'} ?></strong></td>
+            <td><strong><?php echo substr($object->{'Precio Medio'}, 0, 5) ?>€</strong></td>
+            <td><strong><?php echo substr($object->{'Ultimo Precio'}, 0, 8) ?>€</strong></td>
             <td><strong><?php echo substr($object->{'Ultima Modificacion'}, 0, 10) ?></strong></td>
         </tr>
 

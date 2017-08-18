@@ -17,7 +17,7 @@ if (isset($_GET["sql"])) {
     apiRequest($_GET["sql"]);
 }
 
-function apiRequest ($sql){
+function apiRequest ($sql, $auth){
         $arraydesalida = getArraySQL($sql);
 
         echo json_encode($arraydesalida);
