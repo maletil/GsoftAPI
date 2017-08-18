@@ -19,7 +19,7 @@ if (isset($_GET["auth"])) {
                 <td><strong>Nombre</strong></td>
                 <td><strong>Descripción</strong></td>
                 <td><strong>Familia</strong></td>
-                <td><strong>Última modificación</strong></td>
+                <td><strong>Últ. mod.</strong></td>
             </tr>";
 
     foreach ($json_output as $object):?>
@@ -40,20 +40,23 @@ if (isset($_GET["auth"])) {
 <style>
     td{
         padding-right:10px;
-        padding-left: 5px;
+        padding-left: 13px;
         padding-top: 4px;
-        font-family: Liberation Sans, Arial, serif;
+        font-family: Liberation Sans, Arial, monospace;
         font-size: 1rem;
+        border-left: solid 1px #406c52;
     }
     .banner td {
-        padding: 6px 19px 6px 5px;
+        padding-top: 14px;
+        padding-bottom: 12px;
+        border-left: solid 1px #35694a;
     }
     .banner{
         background-color: #0d9351;
-        color: #e1e1e1;
+        color: #e9e9e9;
     }
     .content {
-        background-color: #dddddd;
+        background-color: #c5d8c6b3;
         font-weight: 300;
         line-height: 1.5;
     }
