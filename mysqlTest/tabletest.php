@@ -6,10 +6,18 @@
  * Time: 9:55
  */
 
-if (isset($_GET["auth"]) ) {
+if (isset($_GET["auth"]) && isset($_GET["name"])) {
 
-    $json_string = file_get_contents('http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=12&name=llave&getPrice=false');
-    $json_output = json_decode($json_string);
+    $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=12&name=" . rawurlencode($_GET["name"]) . "&getPrice=false";
+
+    $json_string = file_get_contents($origin);
+
+    if (isset($json_string)) {
+        $json_output = json_decode($json_string);
+    } else {
+        echo('No encontrado');
+        $json_output = false;
+    }
 
 //var_dump($data);
     echo "<table cellspacing=\"0\">
@@ -21,20 +29,23 @@ if (isset($_GET["auth"]) ) {
                 <td><strong>Últ. mod.</strong></td>
             </tr>";
 
-    foreach ($json_output as $object):?>
+    if ($json_output) {
+        foreach ($json_output as $object):?>
 
-        <tr class="content">
-            <td><strong><?php echo $object->{'Contador'} ?></strong></td>
-            <td><strong><?php echo $object->{'Codigo'} ?></strong></td>
-            <td><strong><?php echo $object->{'Descripcion'} ?></strong></td>
-            <td><strong><?php echo $object->{'Familia'} ?></strong></td>
-            <td><strong><?php echo substr($object->{'Ultima Modificacion'}, 0, 10) ?></strong></td>
-        </tr>
+            <tr class="content">
+                <td><strong><?php echo $object->{'Contador'} ?></strong></td>
+                <td><strong><?php echo $object->{'Codigo'} ?></strong></td>
+                <td><strong><?php echo $object->{'Descripcion'} ?></strong></td>
+                <td><strong><?php echo $object->{'Familia'} ?></strong></td>
+                <td><strong><?php echo substr($object->{'Ultima Modificacion'}, 0, 10) ?></strong></td>
+            </tr>
 
-    <?php endforeach;
-    echo "</table>";
+        <?php endforeach;
+        echo "</table>";
+    } else {echo "</table>"; echo ('No encontrado');}
 }
 ?>
+
 <style>
     td{
         padding-right:10px;
