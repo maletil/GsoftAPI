@@ -13,11 +13,12 @@ require ('functions.php');
 // $conn = mysqlDBConnect('EEF97937877D','B2D6B919CAE265589296');
 
 
-if (isset($_GET["sql"])) {
+if (isset($_GET["sql"]) && $_GET["auth"]) {
+    //TODO comprobar authcode
     apiRequest($_GET["sql"]);
 }
 
-function apiRequest ($sql, $auth){
+function apiRequest ($sql){
         $arraydesalida = getArraySQL($sql);
 
         echo json_encode($arraydesalida);

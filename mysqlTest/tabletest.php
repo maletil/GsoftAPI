@@ -8,7 +8,7 @@
 
 if (isset($_GET["auth"]) && isset($_GET["name"])) {
 
-    $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=12&name=" . rawurlencode($_GET["name"]) . "&getPrice=false";
+    $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=". $_GET["auth"] ."&name=". rawurlencode($_GET["name"]) ."&getPrice=false";
 
     $json_string = file_get_contents($origin);
 
@@ -22,7 +22,6 @@ if (isset($_GET["auth"]) && isset($_GET["name"])) {
 //var_dump($data);
     echo "<table cellspacing=\"0\">
            <tr class='banner'>
-                <td><strong>Contador</strong></td>
                 <td><strong>Código</strong></td>
                 <td><strong>Nombre</strong></td>
                 <td><strong>Familia</strong></td>
@@ -33,10 +32,9 @@ if (isset($_GET["auth"]) && isset($_GET["name"])) {
         foreach ($json_output as $object):?>
 
             <tr class="content">
-                <td><strong><?php echo $object->{'Contador'} ?></strong></td>
                 <td><strong><?php echo $object->{'Codigo'} ?></strong></td>
                 <td><strong><?php echo $object->{'Descripcion'} ?></strong></td>
-                <td><strong><?php echo $object->{'Familia'} ?></strong></td>
+                <td><strong><?php echo substr($object->{'Codigo'}, 0, 2) ?></strong></td>
                 <td><strong><?php echo substr($object->{'Ultima Modificacion'}, 0, 10) ?></strong></td>
             </tr>
 
