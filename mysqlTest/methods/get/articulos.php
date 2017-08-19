@@ -12,12 +12,29 @@ if (isset($_GET["auth"]) && isset($_GET["name"]) && isset($_GET["getPrice"])){
 $auth = $_GET["auth"];
 $name = $_GET["name"];
 $getPrice = $_GET["getPrice"];
+$orderBy = "";
+    if (isset($_GET["orderBy"])) {
+        $orderBy = $_GET["orderBy"];
+    }
+
+    switch ($orderBy) {
+        case "Nombre":
+            $orderTable = "`articulos`.`Descripcion`";
+        break;
+        case "Familia":
+            $orderTable = "SUBSTR(`articulos`.`Codigo`, 1, 2)";
+        break;
+        default:
+            $orderTable = "`articulos`.`Descripcion`";
+        break;
+    }
+
 
     if ($getPrice == "true") {
-        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM   articulos, articulos2 WHERE  articulos.Codigo = articulos2.Codigo AND articulos.Descripcion LIKE '%llave%' ORDER BY `articulos`.`Descripcion` ASC";
+        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM   articulos, articulos2 WHERE  articulos.Codigo = articulos2.Codigo AND articulos.Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
         apiRequest($output, $auth);
     } else if ($getPrice == "false") {
-        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos WHERE Descripcion LIKE '%" . $name . "%' ORDER BY `articulos`.`Descripcion` ASC";
+        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos WHERE Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
         apiRequest($output, $auth);
     }
 }

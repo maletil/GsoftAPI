@@ -8,8 +8,22 @@
 
 if (isset($_GET["auth"]) && isset($_GET["name"])) {
 
-    $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=". $_GET["auth"] ."&name=". rawurlencode($_GET["name"]) ."&getPrice=false";
+    $orderBy = "";
+    $name = rawurlencode($_GET["name"]);
+    $auth = $_GET["auth"];
+    $getPrice = "false";
 
+    if (isset($_GET["getPrice"])) {
+            $getPrice = $_GET["getPrice"];
+    }
+    if (isset($_GET["orderBy"])) {
+            $orderBy = $_GET["orderBy"];
+            echo $orderBy;
+    }
+
+
+    $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=". $auth ."&name=". $name ."&getPrice=". $getPrice ."&orderBy=". $orderBy;
+echo $origin;
     $json_string = file_get_contents($origin);
 
     if (isset($json_string)) {
