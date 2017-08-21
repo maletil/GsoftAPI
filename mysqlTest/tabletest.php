@@ -18,12 +18,10 @@ if (isset($_GET["auth"]) && isset($_GET["name"])) {
     }
     if (isset($_GET["orderBy"])) {
             $orderBy = $_GET["orderBy"];
-            echo $orderBy;
     }
 
 
     $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=". $auth ."&name=". $name ."&getPrice=". $getPrice ."&orderBy=". $orderBy;
-echo $origin;
     $json_string = file_get_contents($origin);
 
     if (isset($json_string)) {

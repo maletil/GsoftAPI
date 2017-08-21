@@ -6,7 +6,7 @@
  * Time: 18:37
  */
 
-require ('../../index.php');
+require ('../../functions/functions.php');
 
 if (isset($_GET["auth"]) && isset($_GET["name"]) && isset($_GET["getPrice"])){
 $auth = $_GET["auth"];
@@ -32,9 +32,8 @@ $orderBy = "";
 
     if ($getPrice == "true") {
         $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM   articulos, articulos2 WHERE  articulos.Codigo = articulos2.Codigo AND articulos.Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
-        apiRequest($output, $auth);
     } else if ($getPrice == "false") {
         $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos WHERE Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
-        apiRequest($output, $auth);
     }
+    echo sqlRequest($output, $auth);
 }
