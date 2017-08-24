@@ -31,9 +31,10 @@ $orderBy = "";
 
 
     if ($getPrice == "true") {
-        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM   articulos, articulos2 WHERE  articulos.Codigo = articulos2.Codigo AND articulos.Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
+        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` WHERE articulos.Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
     } else if ($getPrice == "false") {
         $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos WHERE Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
     }
+    header('Content-Type: application/json');
     echo sqlRequest($output, $auth);
 }
