@@ -21,8 +21,8 @@ if (isset($_GET["auth"]) && isset($_GET["name"])) {
     }
 
 
-    $origin = "http://localhost/GsoftAPI-A/mysqlTest/methods/get/articulos.php?auth=". $auth ."&name=". $name ."&getPrice=". $getPrice ."&orderBy=". $orderBy;
-    $json_string = file_get_contents($origin);
+    $apiRequest = "http://localhost/GsoftAPI-A/methods/get/articulos.php?auth=". $auth ."&name=". $name ."&getPrice=". $getPrice ."&orderBy=". $orderBy;
+    $json_string = file_get_contents($apiRequest);
 
     if (isset($json_string)) {
         $json_output = json_decode($json_string);

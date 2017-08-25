@@ -6,7 +6,7 @@
  * Time: 18:37
  */
 
-require ('../../functions/functions.php');
+require('../../functions/functions.php');
 
 if (isset($_GET["auth"]) && isset($_GET["name"]) && isset($_GET["getPrice"])){
 $auth = $_GET["auth"];

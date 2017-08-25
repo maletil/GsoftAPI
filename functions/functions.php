@@ -24,7 +24,7 @@ function getArraySQL($sql){
 }
 
 function sqlRequest ($sql, $auth){
-    require ('../../connection.php');
+    require ('connection.php');
     //TODO comprobar authcode
     $arraydesalida = getArraySQL($sql);
     return json_encode($arraydesalida);
