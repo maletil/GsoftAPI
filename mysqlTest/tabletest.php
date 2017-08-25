@@ -36,8 +36,12 @@ if (isset($_GET["auth"]) && isset($_GET["name"])) {
            <tr class='banner'>
                 <td><strong>Código</strong></td>
                 <td><strong>Nombre</strong></td>
-                <td><strong>Familia</strong></td>
-                <td><strong>Últ. mod.</strong></td>
+                <td><strong>Familia</strong></td>";
+                if ($getPrice == 'true'){
+            echo "<td><strong>P. Medio</strong></td>
+                <td><strong>P. Últ.</strong></td>";
+                }
+            echo "<td><strong>Últ. mod.</strong></td>
             </tr>";
 
     if ($json_output) {
@@ -47,6 +51,11 @@ if (isset($_GET["auth"]) && isset($_GET["name"])) {
                 <td><strong><?php echo $object->{'Codigo'} ?></strong></td>
                 <td><strong><?php echo $object->{'Descripcion'} ?></strong></td>
                 <td><strong><?php echo substr($object->{'Codigo'}, 0, 2) ?></strong></td>
+                    <?php if($getPrice == 'true') {echo "<td><strong>";
+                        if($object->{'Precio Medio'} != 0) {echo substr($object->{'Precio Medio'}, 0, 6) . "€";} else {echo '0'; }
+                    echo "</strong></td> <td><strong>";
+                        if($object->{'Ultimo Precio'} != 0) {echo substr($object->{'Ultimo Precio'}, 0, 6) . "€"; } else {echo '0'; }
+                    echo "</strong></td>"; }?>
                 <td><strong><?php echo substr($object->{'Ultima Modificacion'}, 0, 10) ?></strong></td>
             </tr>
 
