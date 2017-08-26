@@ -8,9 +8,9 @@
 
 require('../../functions/functions.php');
 
-if (isset($_GET["auth"]) && isset($_GET["name"]) && isset($_GET["getPrice"])){
+if (isset($_GET["auth"]) && isset($_GET["search"]) && isset($_GET["getPrice"])){
 $auth = $_GET["auth"];
-$name = $_GET["name"];
+$search = $_GET["search"];
 $getPrice = $_GET["getPrice"];
 $orderBy = "";
     if (isset($_GET["orderBy"])) {
@@ -29,11 +29,17 @@ $orderBy = "";
         break;
     }
 
+    if (is_numeric($search)){
+        $whereField = "WHERE articulos.Codigo =". $search;
+    } else {
+        $whereField = "WHERE articulos.Descripcion LIKE '%" . $search . "%'";
+    }
+
 
     if ($getPrice == "true") {
-        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` WHERE articulos.Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
+        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderTable ." ASC";
     } else if ($getPrice == "false") {
-        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos WHERE Descripcion LIKE '%" . $name . "%' ORDER BY ". $orderTable ." ASC";
+        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderTable ." ASC";
     }
     header('Content-Type: application/json');
     echo sqlRequest($output, $auth);

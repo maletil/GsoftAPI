@@ -6,10 +6,10 @@
  * Time: 9:55
  */
 
-if (isset($_GET["auth"]) && isset($_GET["name"])) {
+if (isset($_GET["auth"]) && isset($_GET["search"])) {
 
     $orderBy = "";
-    $name = rawurlencode($_GET["name"]);
+    $search = rawurlencode($_GET["search"]);
     $auth = $_GET["auth"];
     $getPrice = "false";
 
@@ -21,7 +21,7 @@ if (isset($_GET["auth"]) && isset($_GET["name"])) {
     }
 
 
-    $apiRequest = "http://localhost/GsoftAPI-A/methods/get/articulos.php?auth=". $auth ."&name=". $name ."&getPrice=". $getPrice ."&orderBy=". $orderBy;
+    $apiRequest = "http://localhost/GsoftAPI-A/methods/get/articulos.php?auth=". $auth ."&search=". $search ."&getPrice=". $getPrice ."&orderBy=". $orderBy;
     $json_string = file_get_contents($apiRequest);
 
     if (isset($json_string)) {
