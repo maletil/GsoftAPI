@@ -13,6 +13,7 @@ $auth = $_GET["auth"];
 $search = $_GET["search"];
 $getPrice = $_GET["getPrice"];
 $orderBy = "";
+
     if (isset($_GET["orderBy"])) {
         $orderBy = $_GET["orderBy"];
     }
@@ -23,6 +24,9 @@ $orderBy = "";
         break;
         case "Familia":
             $orderTable = "SUBSTR(`articulos`.`Codigo`, 1, 2)";
+        break;
+        case "Fecha":
+            $orderTable = "`Ultima Modificacion`";
         break;
         default:
             $orderTable = "`articulos`.`Descripcion`";
