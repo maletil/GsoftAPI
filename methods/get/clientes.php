@@ -29,19 +29,11 @@ if (isset($_GET["auth"]) && isset($_GET["search"])){
             break;
     }*/
 
-/*    function numberIsLandline($number) {
-        if (substr($number, 0, 1) == 9){  //For Spain is 9.
-            $result = true;
-        } else {$result = false;}
-        return $result;
-    }*/
-
-   // if (is_numeric(substr($search, 0 ,3))){
-        $whereField = "Telefono1 LIKE '". $search. "%' OR Telefono2 LIKE '". preg_replace("/[^0-9]/","",$search) . "%'";
-   // } else {
-      //  $whereField = "`Nombre Fiscal` LIKE '%" . $search . "%'";
-     //   echo "nombre";
-   // }
+    if (is_numeric(substr($search, 0 ,3))){
+        $whereField = "Telefono1 LIKE INSERT('". $search ."%',4,0,'-') OR Telefono2 LIKE INSERT('". $search ."%',4,0,'-')";
+    } else {
+        $whereField = "`Nombre Fiscal` LIKE '%" . $search . "%'";
+    }
 
     $output = "SELECT clientes.Contador, Codigo, `Nombre Fiscal`, CIF, `C Postal`, `Poblacion`, Domicilio, Telefono1, Telefono2 FROM clientes INNER JOIN direcciones ON `direcciones`.`Cliente` = `clientes`.`Contador` WHERE Fiscal = TRUE AND ". $whereField ." ORDER BY `Nombre Fiscal` ASC";
     header('Content-Type: application/json');
