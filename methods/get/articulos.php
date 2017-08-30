@@ -33,8 +33,13 @@ $orderBy = "";
         break;
     }
 
+
     if (is_numeric($search)){
+        if (strlen($search) == 2) {
+            $whereField = "WHERE articulos.Familia =". $search; //Búsqueda por Familia
+        }else {
         $whereField = "WHERE articulos.Codigo =". $search;
+        }
     } else {
         $whereField = "WHERE articulos.Descripcion LIKE '%" . $search . "%'";
     }
