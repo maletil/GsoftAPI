@@ -11,22 +11,16 @@ function getArraySQL($sql){
 
     if(!$result = mysqli_query($conn, $sql)) die();
 
-    $rawdata = array();
-    $i=0;
-
-    while($row = mysqli_fetch_array($result))
-    {
-        $rawdata[$i] = $row;
-        $i++;
+    $sqlArray = array();
+    while($row =mysqli_fetch_assoc($result)) {
+        $sqlArray[] = $row;
     }
-    mysqlDBDisconnect($conn);
-    return $rawdata;
+    return $sqlArray;
 }
 
 function sqlRequest ($sql, $auth){
     require ('connection.php');
     //TODO comprobar authcode
-    $arraydesalida = getArraySQL($sql);
-    return json_encode($arraydesalida);
-
+    $outputArray = getArraySQL($sql);
+    return json_encode($outputArray);
 }
