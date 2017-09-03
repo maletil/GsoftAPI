@@ -19,13 +19,13 @@ if (isset($_GET["auth"]) && isset($_GET["search"])){
 
 /*    switch ($orderBy) {
         case "Nombre":
-            $orderTable = "`Nombre Fiscal`";
+            $orderColumn = "`Nombre Fiscal`";
             break;
         case "Familia":
-            $orderTable = "SUBSTR(`articulos`.`Codigo`, 1, 2)";
+            $orderColumn = "SUBSTR(`articulos`.`Codigo`, 1, 2)";
             break;
         default:
-            $orderTable = "`articulos`.`Descripcion`";
+            $orderColumn = "`articulos`.`Descripcion`";
             break;
     }*/
 

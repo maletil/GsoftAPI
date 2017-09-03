@@ -25,19 +25,19 @@ $orderBy = "";
 
     switch ($orderBy) {
         case "Nombre":
-            $orderTable = "`articulos`.`Descripcion`";
+            $orderColumn = "`articulos`.`Descripcion`";
                 if ($orderword == "undefined"){ $orderword = "ASC";}
         break;
         case "Familia":
-            $orderTable = "SUBSTR(`articulos`.`Codigo`, 1, 2)";
+            $orderColumn = "SUBSTR(`articulos`.`Codigo`, 1, 2)";
                 if ($orderword == "undefined"){ $orderword = "ASC";}
         break;
         case "Fecha":
-            $orderTable = "`Ultima Modificacion`";
+            $orderColumn = "`Ultima Modificacion`";
                 if ($orderword == "undefined"){ $orderword = "DESC";}
         break;
         default:
-            $orderTable = "`articulos`.`Descripcion`";
+            $orderColumn = "`articulos`.`Descripcion`";
             if ($orderword == "undefined"){ $orderword = "ASC";}
         break;
     }
@@ -55,9 +55,9 @@ $orderBy = "";
 
 
     if ($getPrice == "true") {
-        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderTable . " ". $orderword;
+        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderColumn . " " .$orderword;
     } else if ($getPrice == "false") {
-        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderTable;
+        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderColumn. " " .$orderword;
     }
     header('Content-Type: application/json');
     echo sqlRequest($output, $auth);
