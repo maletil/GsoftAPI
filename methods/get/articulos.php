@@ -17,28 +17,28 @@ $orderBy = "";
     if (isset($_GET["orderBy"])) {
         $orderBy = $_GET["orderBy"];
     }
-    if (isset($_GET["orderword"])) {
-        $orderword = $_GET["orderword"];
+    if (isset($_GET["orderWord"])) {
+        $orderWord = $_GET["orderWord"];
     } else {
-        $orderword = "undefined";
+        $orderWord = "undefined";
     }
 
     switch ($orderBy) {
         case "Nombre":
             $orderColumn = "`articulos`.`Descripcion`";
-                if ($orderword == "undefined"){ $orderword = "ASC";}
+                if ($orderWord == "undefined"){ $orderWord = "ASC";}
         break;
         case "Familia":
             $orderColumn = "SUBSTR(`articulos`.`Codigo`, 1, 2)";
-                if ($orderword == "undefined"){ $orderword = "ASC";}
+                if ($orderWord == "undefined"){ $orderWord = "ASC";}
         break;
         case "Fecha":
             $orderColumn = "`Ultima Modificacion`";
-                if ($orderword == "undefined"){ $orderword = "DESC";}
+                if ($orderWord == "undefined"){ $orderWord = "DESC";}
         break;
         default:
             $orderColumn = "`articulos`.`Descripcion`";
-            if ($orderword == "undefined"){ $orderword = "ASC";}
+            if ($orderWord == "undefined"){ $orderWord = "ASC";}
         break;
     }
 
@@ -55,9 +55,9 @@ $orderBy = "";
 
 
     if ($getPrice == "true") {
-        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderColumn . " " .$orderword;
+        $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderColumn . " " .$orderWord;
     } else if ($getPrice == "false") {
-        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderColumn. " " .$orderword;
+        $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderColumn. " " .$orderWord;
     }
     header('Content-Type: application/json');
     echo sqlRequest($output, $auth);
