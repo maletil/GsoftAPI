@@ -1,0 +1,162 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2017-09-11T11:00:58.977Z",
+	"__export_source": "insomnia.desktop.app:v5.7.14",
+	"resources": [
+		{
+			"_id": "wrk_1e2726f2fec340578a6f0cb188ffb3ce",
+			"parentId": null,
+			"modified": 1505127638440,
+			"created": 1501017808052,
+			"name": "Gsoft API",
+			"description": "",
+			"certificates": [],
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_4ceda923a7054f71b70e324d9659453b",
+			"parentId": "wrk_1e2726f2fec340578a6f0cb188ffb3ce",
+			"modified": 1505127092917,
+			"created": 1501017817109,
+			"name": "Gsoft API Environment",
+			"data": {
+				"base_api_url": "localhost/GsoftAPI-A"
+			},
+			"color": null,
+			"isPrivate": false,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_870e1371f0bf47f5ad1ce43d27c89d5c",
+			"parentId": "wrk_1e2726f2fec340578a6f0cb188ffb3ce",
+			"modified": 1505127648359,
+			"created": 1501173543952,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_87091b37e5d141e7974aa6f578dae070",
+			"parentId": "wrk_1e2726f2fec340578a6f0cb188ffb3ce",
+			"modified": 1505127193671,
+			"created": 1505125965777,
+			"name": "GET",
+			"description": "",
+			"environment": {
+				"base_url": "{{ base_api_url  }}/methods/get"
+			},
+			"metaSortKey": -1502817426756,
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_42a2d7c6b4814509bbbbf9e7ca628739",
+			"parentId": "fld_87091b37e5d141e7974aa6f578dae070",
+			"modified": 1505127264046,
+			"created": 1502817440978,
+			"url": "{{ base_url  }}/articulos.php",
+			"name": "Artículos",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [
+				{
+					"name": "auth",
+					"value": "1",
+					"id": "pair_0b9d0192e3274cebaba9f0bde7062047",
+					"disabled": false
+				},
+				{
+					"name": "search",
+					"value": "",
+					"id": "pair_60da53e55bfb4a249f0a51ec77114519"
+				},
+				{
+					"name": "getPrice",
+					"value": "false",
+					"id": "pair_d2ac6ba17096445381c21586a9206d89",
+					"disabled": false
+				},
+				{
+					"name": "orderBy",
+					"value": "Nombre",
+					"id": "pair_8a90ecfa69dd4f76882badfab02fc03c",
+					"disabled": false
+				},
+				{
+					"name": "orderWord",
+					"value": "DESC",
+					"id": "pair_c5d52295f5684ad78078d545c3aa6019",
+					"disabled": true
+				}
+			],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1503971703427.5,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_935f35da92034f8fba5a9ce6e0c4cf3e",
+			"parentId": "fld_87091b37e5d141e7974aa6f578dae070",
+			"modified": 1505127232227,
+			"created": 1503677197004,
+			"url": "{{ base_url  }}/familias.php",
+			"name": "Familias",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [
+				{
+					"name": "auth",
+					"value": "123",
+					"id": "pair_eae51fd61de54708bbda83b28ee28f31"
+				}
+			],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1503971703377.5,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_7b5c64d5dc784182bb538f5a52fe18b5",
+			"parentId": "fld_87091b37e5d141e7974aa6f578dae070",
+			"modified": 1505127247570,
+			"created": 1503915672674,
+			"url": "{{ base_url  }}/clientes.php",
+			"name": "Clientes",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [
+				{
+					"name": "auth",
+					"value": "123",
+					"id": "pair_bcfd124a025043b494ebe2669d45234b",
+					"disabled": false
+				},
+				{
+					"name": "search",
+					"value": "",
+					"id": "pair_c5e25b45fe7c445a976cbbacf55c53cc",
+					"disabled": false
+				}
+			],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1503971703327.5,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		}
+	]
+}
