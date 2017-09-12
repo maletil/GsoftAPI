@@ -14,14 +14,8 @@ $search = $_GET["search"];
 $getPrice = $_GET["getPrice"];
 $orderBy = "";
 
-    if (isset($_GET["orderBy"])) {
-        $orderBy = $_GET["orderBy"];
-    }
-    if (isset($_GET["orderWord"])) {
-        $orderWord = $_GET["orderWord"];
-    } else {
-        $orderWord = "undefined";
-    }
+    $orderBy = (isset($_GET["orderBy"]) ? $_GET["orderBy"] : '');
+    $orderWord = (isset($_GET["orderWord"]) ? $_GET["orderWord"] : 'undefined');
 
     switch ($orderBy) {
         case "Nombre":
@@ -45,7 +39,7 @@ $orderBy = "";
 
     if (is_numeric($search)){
         if (strlen($search) == 2) {
-            $whereField = "WHERE articulos.Familia =". $search; //Búsqueda por Familia
+            $whereField = "WHERE articulos.Familia =". $search; //Búsqueda por Familia 2 digitos
         }else {
         $whereField = "WHERE articulos.Codigo =". $search;
         }
@@ -54,9 +48,9 @@ $orderBy = "";
     }
 
 
-    if ($getPrice == "true") {
+    if ($getPrice) {
         $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderColumn . " " .$orderWord;
-    } else if ($getPrice == "false") {
+    } else if ($getPrice) {
         $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderColumn. " " .$orderWord;
     }
     header('Content-Type: application/json');
