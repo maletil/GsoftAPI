@@ -7,13 +7,12 @@
  */
 
 function mysqlDBConnect () {
- //   $hashfinal = "$hash1 + $hash2";
-    // if ($hashfinal = md5('sahe')) {
+    $configs = include('../../private/config.php');
 
-    $username = "root";
-    $password = "";
-    $servername = "127.0.0.1";
-    $dbname = "gsoft";
+    $username = $configs['username'];
+    $password = $configs['password'];
+    $servername = $configs['host'];
+    $dbname = $configs['dbname'];
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     mysqli_set_charset($conn, "utf8");
