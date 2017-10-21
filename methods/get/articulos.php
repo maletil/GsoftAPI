@@ -16,7 +16,7 @@ $orderBy = "";
 
     $orderBy = (isset($_GET["orderBy"]) ? $_GET["orderBy"] : '');
     $orderWord = (isset($_GET["orderWord"]) ? $_GET["orderWord"] : 'undefined');
-
+    
     switch ($orderBy) {
         case "Nombre":
             $orderColumn = "`articulos`.`Descripcion`";
@@ -39,7 +39,7 @@ $orderBy = "";
 
     if (is_numeric($search)){
         if (strlen($search) == 2) {
-            $whereField = "WHERE articulos.Familia =". $search; //Búsqueda por Familia 2 digitos
+            $whereField = "WHERE articulos.Codigo LIKE '". $search ."%'"; //Búsqueda por Familia 2 digitos
         }else {
         $whereField = "WHERE articulos.Codigo =". $search;
         }
@@ -55,4 +55,5 @@ $orderBy = "";
     }
     header('Content-Type: application/json');
     echo sqlRequest($output, $auth);
+//    echo $output;
 }
