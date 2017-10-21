@@ -16,7 +16,11 @@ $orderBy = "";
 
     $orderBy = (isset($_GET["orderBy"]) ? $_GET["orderBy"] : '');
     $orderWord = (isset($_GET["orderWord"]) ? $_GET["orderWord"] : 'undefined');
-    
+
+    if ($search == "*"){
+        $search = "";
+    }
+
     switch ($orderBy) {
         case "Nombre":
             $orderColumn = "`articulos`.`Descripcion`";
@@ -50,7 +54,7 @@ $orderBy = "";
 
     if ($getPrice) {
         $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderColumn . " " .$orderWord;
-    } else if ($getPrice) {
+    } else if (!$getPrice) {
         $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderColumn. " " .$orderWord;
     }
     header('Content-Type: application/json');
