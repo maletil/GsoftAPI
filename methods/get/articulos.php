@@ -20,6 +20,9 @@ $orderBy = "";
     if ($search == "*"){
         $search = "";
     }
+    if ($getPrice == "false"){
+        $getPrice = false;
+    }
 
     switch ($orderBy) {
         case "Nombre":
@@ -51,10 +54,9 @@ $orderBy = "";
         $whereField = "WHERE articulos.Descripcion LIKE '%" . $search . "%'";
     }
 
-
     if ($getPrice) {
         $output = "SELECT articulos.Contador, articulos.Codigo, Descripcion, `Precio Medio`, `Ultimo Precio` , `Ultima Modificacion` FROM articulos INNER JOIN articulos2 ON `articulos`.`Codigo` = `articulos2`.`Codigo` ". $whereField ." ORDER BY ". $orderColumn . " " .$orderWord;
-    } else if (!$getPrice) {
+    } else {
         $output = "SELECT Contador, Codigo, Nombre, Descripcion, `Ultima Modificacion` FROM articulos ". $whereField ." ORDER BY ". $orderColumn. " " .$orderWord;
     }
     header('Content-Type: application/json');
